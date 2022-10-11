@@ -1,0 +1,978 @@
+# Makefile.in is generated from Makefile.tpl by 'autogen Makefile.def'.
+#
+# Makefile for directory with subdirs to build.
+#   Copyright (C) 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998,
+#   1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011
+#   Free Software Foundation
+#
+# This file is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; see the file COPYING3.  If not see
+# <http://www.gnu.org/licenses/>.
+#
+
+# First, test for a proper version of make, but only where one is required.
+
+ifeq (,$(.VARIABLES)) # The variable .VARIABLES, new with 3.80, is never empty.
+$(error GNU make version 3.80 or newer is required.)
+endif
+
+# -------------------------------
+# Standard Autoconf-set variables
+# -------------------------------
+VPATH=..
+
+build_alias=x86_64-pc-linux-gnu
+build_vendor=pc
+build_os=linux-gnu
+build=x86_64-pc-linux-gnu
+host_alias=x86_64-pc-linux-gnu
+host_vendor=pc
+host_os=linux-gnu
+host=x86_64-pc-linux-gnu
+target_alias=x86_64-pc-linux-gnu
+target_vendor=pc
+target_os=linux-gnu
+target=x86_64-pc-linux-gnu
+
+program_transform_name = s,y,y,
+
+prefix = /usr/local
+exec_prefix = ${prefix}
+
+srcdir = ..
+
+bindir = ${exec_prefix}/bin
+sbindir = ${exec_prefix}/sbin
+libexecdir = ${exec_prefix}/libexec
+datadir = ${datarootdir}
+sysconfdir = ${prefix}/etc
+sharedstatedir = ${prefix}/com
+localstatedir = ${prefix}/var
+libdir = ${exec_prefix}/lib
+includedir = ${prefix}/include
+oldincludedir = /usr/include
+infodir = ${datarootdir}/info
+datarootdir = ${prefix}/share
+docdir = ${datarootdir}/doc/${PACKAGE}
+pdfdir = ${docdir}
+htmldir = ${docdir}
+mandir = ${datarootdir}/man
+man1dir = $(mandir)/man1
+man2dir = $(mandir)/man2
+man3dir = $(mandir)/man3
+man4dir = $(mandir)/man4
+man5dir = $(mandir)/man5
+man6dir = $(mandir)/man6
+man7dir = $(mandir)/man7
+man8dir = $(mandir)/man8
+man9dir = $(mandir)/man9
+
+INSTALL = /usr/bin/install -c
+INSTALL_PROGRAM = ${INSTALL}
+INSTALL_SCRIPT = ${INSTALL}
+INSTALL_DATA = ${INSTALL} -m 644
+LN = ln
+LN_S = ln -s
+MAINT = #
+MAINTAINER_MODE_FALSE = 
+MAINTAINER_MODE_TRUE = #
+
+# -------------------------------------------------
+# Miscellaneous non-standard autoconf-set variables
+# -------------------------------------------------
+
+# The gcc driver likes to know the arguments it was configured with.
+TOPLEVEL_CONFIGURE_ARGUMENTS=../configure --disable-multilib --enable-languages=c
+
+tooldir = ${exec_prefix}/x86_64-pc-linux-gnu
+build_tooldir = ${exec_prefix}/x86_64-pc-linux-gnu
+
+# This is the name of the environment variable used for the path to
+# the libraries.
+RPATH_ENVVAR = LD_LIBRARY_PATH
+
+# On targets where RPATH_ENVVAR is PATH, a subdirectory of the GCC build path
+# is used instead of the directory itself to avoid including built
+# executables in PATH.
+GCC_SHLIB_SUBDIR = 
+
+# If the build should make suitable code for shared host resources.
+host_shared = no
+
+# Build programs are put under this directory.
+BUILD_SUBDIR = build-x86_64-pc-linux-gnu
+# This is set by the configure script to the arguments to use when configuring
+# directories built for the build system.
+BUILD_CONFIGARGS =  --cache-file=./config.cache '--disable-multilib' '--enable-languages=c,c++,lto' --program-transform-name='s,y,y,' --disable-option-checking --with-build-subdir="$(BUILD_SUBDIR)"
+
+# Linker flags to use on the host, for stage1 or when not
+# bootstrapping.
+STAGE1_LDFLAGS = -static-libstdc++ -static-libgcc
+
+# Libraries to use on the host, for stage1 or when not bootstrapping.
+STAGE1_LIBS = 
+
+# Linker flags to use for stage2 and later.
+POSTSTAGE1_LDFLAGS = -static-libstdc++ -static-libgcc
+
+# Libraries to use for stage2 and later.
+POSTSTAGE1_LIBS = 
+
+# This is the list of variables to export in the environment when
+# configuring any subdirectory.  It must also be exported whenever
+# recursing into a build directory in case that directory's Makefile
+# re-runs configure.
+BASE_EXPORTS = \
+	FLEX="$(FLEX)"; export FLEX; \
+	LEX="$(LEX)"; export LEX; \
+	BISON="$(BISON)"; export BISON; \
+	YACC="$(YACC)"; export YACC; \
+	M4="$(M4)"; export M4; \
+	SED="$(SED)"; export SED; \
+	AWK="$(AWK)"; export AWK; \
+	MAKEINFO="$(MAKEINFO)"; export MAKEINFO;
+
+# This is the list of variables to export in the environment when
+# configuring subdirectories for the build system.
+BUILD_EXPORTS = \
+	$(BASE_EXPORTS) \
+	AR="$(AR_FOR_BUILD)"; export AR; \
+	AS="$(AS_FOR_BUILD)"; export AS; \
+	CC="$(CC_FOR_BUILD)"; export CC; \
+	CFLAGS="$(CFLAGS_FOR_BUILD)"; export CFLAGS; \
+	CONFIG_SHELL="$(SHELL)"; export CONFIG_SHELL; \
+	CPP="$(CPP_FOR_BUILD)"; export CPP; \
+	CPPFLAGS="$(CPPFLAGS_FOR_BUILD)"; export CPPFLAGS; \
+	CXX="$(CXX_FOR_BUILD)"; export CXX; \
+	CXXFLAGS="$(CXXFLAGS_FOR_BUILD)"; export CXXFLAGS; \
+	GFORTRAN="$(GFORTRAN_FOR_BUILD)"; export GFORTRAN; \
+	GOC="$(GOC_FOR_BUILD)"; export GOC; \
+	GOCFLAGS="$(GOCFLAGS_FOR_BUILD)"; export GOCFLAGS; \
+	GDC="$(GDC_FOR_BUILD)"; export GDC; \
+	GDCFLAGS="$(GDCFLAGS_FOR_BUILD)"; export GDCFLAGS; \
+	DLLTOOL="$(DLLTOOL_FOR_BUILD)"; export DLLTOOL; \
+	DSYMUTIL="$(DSYMUTIL_FOR_BUILD)"; export DSYMUTIL; \
+	LD="$(LD_FOR_BUILD)"; export LD; \
+	LDFLAGS="$(LDFLAGS_FOR_BUILD)"; export LDFLAGS; \
+	NM="$(NM_FOR_BUILD)"; export NM; \
+	RANLIB="$(RANLIB_FOR_BUILD)"; export RANLIB; \
+	WINDRES="$(WINDRES_FOR_BUILD)"; export WINDRES; \
+	WINDMC="$(WINDMC_FOR_BUILD)"; export WINDMC;
+
+# These variables must be set on the make command line for directories
+# built for the build system to override those in BASE_FLAGS_TO_PASS.
+EXTRA_BUILD_FLAGS = \
+	CFLAGS="$(CFLAGS_FOR_BUILD)" \
+	LDFLAGS="$(LDFLAGS_FOR_BUILD)"
+
+# This is the list of directories to built for the host system.
+SUBDIRS =  intl libiberty zlib libbacktrace libcpp libcody libdecnumber fixincludes gcc libcc1 c++tools lto-plugin
+TARGET_CONFIGDIRS =  libgcc libgomp libatomic libitm libstdc++-v3 libsanitizer libvtv libssp libquadmath
+# This is set by the configure script to the arguments to use when configuring
+# directories built for the host system.
+HOST_CONFIGARGS =  --cache-file=./config.cache  '--disable-multilib' '--enable-languages=c,c++,lto' --program-transform-name='s,y,y,' --disable-option-checking
+# Host programs are put under this directory, which is . except if building
+# with srcdir=..
+# This is the list of variables to export in the environment when
+# configuring subdirectories for the host system.  We need to pass
+# some to the GCC configure because of its hybrid host/target nature.
+HOST_EXPORTS = \
+	$(BASE_EXPORTS) \
+	CC="$(CC)"; export CC; \
+	ADA_CFLAGS="$(ADA_CFLAGS)"; export ADA_CFLAGS; \
+	CFLAGS="$(CFLAGS)"; export CFLAGS; \
+	CONFIG_SHELL="$(SHELL)"; export CONFIG_SHELL; \
+	CXX="$(CXX)"; export CXX; \
+	CXXFLAGS="$(CXXFLAGS)"; export CXXFLAGS; \
+	GFORTRAN="$(GFORTRAN)"; export GFORTRAN; \
+	GOC="$(GOC)"; export GOC; \
+	GDC="$(GDC)"; export GDC; \
+	AR="$(AR)"; export AR; \
+	AS="$(AS)"; export AS; \
+	CC_FOR_BUILD="$(CC_FOR_BUILD)"; export CC_FOR_BUILD; \
+	CPP_FOR_BUILD="$(CPP_FOR_BUILD)"; export CPP_FOR_BUILD; \
+	CPPFLAGS_FOR_BUILD="$(CPPFLAGS_FOR_BUILD)"; export CPPFLAGS_FOR_BUILD; \
+	CXX_FOR_BUILD="$(CXX_FOR_BUILD)"; export CXX_FOR_BUILD; \
+	DLLTOOL="$(DLLTOOL)"; export DLLTOOL; \
+	DSYMUTIL="$(DSYMUTIL)"; export DSYMUTIL; \
+	LD="$(LD)"; export LD; \
+	LDFLAGS="$(STAGE1_LDFLAGS) $(LDFLAGS)"; export LDFLAGS; \
+	NM="$(NM)"; export NM; \
+	RANLIB="$(RANLIB)"; export RANLIB; \
+	WINDRES="$(WINDRES)"; export WINDRES; \
+	WINDMC="$(WINDMC)"; export WINDMC; \
+	OBJCOPY="$(OBJCOPY)"; export OBJCOPY; \
+	OBJDUMP="$(OBJDUMP)"; export OBJDUMP; \
+	OTOOL="$(OTOOL)"; export OTOOL; \
+	READELF="$(READELF)"; export READELF; \
+	AR_FOR_TARGET="$(AR_FOR_TARGET)"; export AR_FOR_TARGET; \
+	AS_FOR_TARGET="$(AS_FOR_TARGET)"; export AS_FOR_TARGET; \
+	DSYMUTIL_FOR_TARGET="$(DSYMUTIL_FOR_TARGET)"; export DSYMUTIL_FOR_TARGET; \
+	GCC_FOR_TARGET="$(GCC_FOR_TARGET) $$TFLAGS"; export GCC_FOR_TARGET; \
+	LD_FOR_TARGET="$(LD_FOR_TARGET)"; export LD_FOR_TARGET; \
+	NM_FOR_TARGET="$(NM_FOR_TARGET)"; export NM_FOR_TARGET; \
+	OBJDUMP_FOR_TARGET="$(OBJDUMP_FOR_TARGET)"; export OBJDUMP_FOR_TARGET; \
+	OBJCOPY_FOR_TARGET="$(OBJCOPY_FOR_TARGET)"; export OBJCOPY_FOR_TARGET; \
+	OTOOL_FOR_TARGET="$(OTOOL_FOR_TARGET)"; export OTOOL_FOR_TARGET; \
+	RANLIB_FOR_TARGET="$(RANLIB_FOR_TARGET)"; export RANLIB_FOR_TARGET; \
+	READELF_FOR_TARGET="$(READELF_FOR_TARGET)"; export READELF_FOR_TARGET; \
+	TOPLEVEL_CONFIGURE_ARGUMENTS="$(TOPLEVEL_CONFIGURE_ARGUMENTS)"; export TOPLEVEL_CONFIGURE_ARGUMENTS; \
+	HOST_LIBS="$(STAGE1_LIBS)"; export HOST_LIBS; \
+	GMPLIBS="$(HOST_GMPLIBS)"; export GMPLIBS; \
+	GMPINC="$(HOST_GMPINC)"; export GMPINC; \
+	ISLLIBS="$(HOST_ISLLIBS)"; export ISLLIBS; \
+	ISLINC="$(HOST_ISLINC)"; export ISLINC; \
+	XGCC_FLAGS_FOR_TARGET="$(XGCC_FLAGS_FOR_TARGET)"; export XGCC_FLAGS_FOR_TARGET; \
+	$(RPATH_ENVVAR)=`echo "$(TARGET_LIB_PATH)$$$(RPATH_ENVVAR)" | sed 's,::*,:,g;s,^:*,,;s,:*$$,,'`; export $(RPATH_ENVVAR); \
+	$(RPATH_ENVVAR)=`echo "$(HOST_LIB_PATH)$$$(RPATH_ENVVAR)" | sed 's,::*,:,g;s,^:*,,;s,:*$$,,'`; export $(RPATH_ENVVAR);
+
+POSTSTAGE1_CXX_EXPORT = \
+	CXX='$(CXX)'; export CXX; \
+	CXX_FOR_BUILD='$(CXX_FOR_BUILD)'; export CXX_FOR_BUILD;
+# Override the above if we're bootstrapping C++.
+POSTSTAGE1_CXX_EXPORT = \
+	CXX="$(STAGE_CC_WRAPPER) $$r/$(HOST_SUBDIR)/prev-gcc/xg++$(exeext) \
+	  -B$$r/$(HOST_SUBDIR)/prev-gcc/ -B$(build_tooldir)/bin/ -nostdinc++ \
+	  -B$$r/prev-$(TARGET_SUBDIR)/libstdc++-v3/src/.libs \
+	  -B$$r/prev-$(TARGET_SUBDIR)/libstdc++-v3/libsupc++/.libs \
+	  `if $(LEAN); then echo ' -isystem '; else echo ' -I'; fi`$$r/prev-$(TARGET_SUBDIR)/libstdc++-v3/include/$(TARGET_SUBDIR) \
+	  `if $(LEAN); then echo ' -isystem '; else echo ' -I'; fi`$$r/prev-$(TARGET_SUBDIR)/libstdc++-v3/include \
+	  `if $(LEAN); then echo ' -isystem '; else echo ' -I'; fi`$$s/libstdc++-v3/libsupc++ \
+	  -L$$r/prev-$(TARGET_SUBDIR)/libstdc++-v3/src/.libs \
+	  -L$$r/prev-$(TARGET_SUBDIR)/libstdc++-v3/libsupc++/.libs"; \
+	  export CXX; \
+	CXX_FOR_BUILD="$$CXX"; export CXX_FOR_BUILD;
+
+# Similar, for later GCC stages.
+POSTSTAGE1_HOST_EXPORTS = \
+	$(HOST_EXPORTS) \
+	CC="$(STAGE_CC_WRAPPER) $$r/$(HOST_SUBDIR)/prev-gcc/xgcc$(exeext) \
+	  -B$$r/$(HOST_SUBDIR)/prev-gcc/ -B$(build_tooldir)/bin/ \
+	  $(XGCC_FLAGS_FOR_TARGET) $$TFLAGS"; export CC; \
+	CC_FOR_BUILD="$$CC"; export CC_FOR_BUILD; \
+	$(POSTSTAGE1_CXX_EXPORT) \
+	$(LTO_EXPORTS) \
+	GDC="$$r/$(HOST_SUBDIR)/prev-gcc/gdc$(exeext) -B$$r/$(HOST_SUBDIR)/prev-gcc/ \
+	  -B$(build_tooldir)/bin/ $(GDCFLAGS_FOR_TARGET) \
+	  -B$$r/prev-$(TARGET_SUBDIR)/libphobos/libdruntime/gcc \
+	  -B$$r/prev-$(TARGET_SUBDIR)/libphobos/src \
+	  -B$$r/prev-$(TARGET_SUBDIR)/libphobos/src/.libs \
+	  -I$$r/prev-$(TARGET_SUBDIR)/libphobos/libdruntime -I$$s/libphobos/libdruntime \
+	  -L$$r/prev-$(TARGET_SUBDIR)/libphobos/src/.libs \
+	  -B$$r/prev-$(TARGET_SUBDIR)/libstdc++-v3/src/.libs \
+	  -L$$r/prev-$(TARGET_SUBDIR)/libstdc++-v3/src/.libs"; \
+	export GDC; \
+	GDC_FOR_BUILD="$$GDC"; export GDC_FOR_BUILD; \
+	GNATBIND="$$r/$(HOST_SUBDIR)/prev-gcc/gnatbind"; export GNATBIND; \
+	LDFLAGS="$(POSTSTAGE1_LDFLAGS) $(BOOT_LDFLAGS)"; export LDFLAGS; \
+	HOST_LIBS="$(POSTSTAGE1_LIBS)"; export HOST_LIBS;
+
+# Target libraries are put under this directory:
+TARGET_SUBDIR = x86_64-pc-linux-gnu
+# This is set by the configure script to the arguments to use when configuring
+# directories built for the target.
+TARGET_CONFIGARGS = --cache-file=./config.cache   '--disable-multilib' '--enable-languages=c,c++,lto' --program-transform-name='s,y,y,' --disable-option-checking --with-target-subdir="$(TARGET_SUBDIR)"
+# This is the list of variables to export in the environment when
+# configuring subdirectories for the target system.
+BASE_TARGET_EXPORTS = \
+	$(BASE_EXPORTS) \
+	AR="$(AR_FOR_TARGET)"; export AR; \
+	AS="$(COMPILER_AS_FOR_TARGET)"; export AS; \
+	CC="$(CC_FOR_TARGET) $(XGCC_FLAGS_FOR_TARGET) $$TFLAGS"; export CC; \
+	CFLAGS="$(CFLAGS_FOR_TARGET)"; export CFLAGS; \
+	CONFIG_SHELL="$(SHELL)"; export CONFIG_SHELL; \
+	CPPFLAGS="$(CPPFLAGS_FOR_TARGET)"; export CPPFLAGS; \
+	CXXFLAGS="$(CXXFLAGS_FOR_TARGET)"; export CXXFLAGS; \
+	GFORTRAN="$(GFORTRAN_FOR_TARGET) $(XGCC_FLAGS_FOR_TARGET) $$TFLAGS"; export GFORTRAN; \
+	GOC="$(GOC_FOR_TARGET) $(XGCC_FLAGS_FOR_TARGET) $$TFLAGS"; export GOC; \
+	GDC="$(GDC_FOR_TARGET) $(XGCC_FLAGS_FOR_TARGET) $$TFLAGS"; export GDC; \
+	DLLTOOL="$(DLLTOOL_FOR_TARGET)"; export DLLTOOL; \
+	DSYMUTIL="$(DSYMUTIL_FOR_TARGET)"; export DSYMUTIL; \
+	LD="$(COMPILER_LD_FOR_TARGET)"; export LD; \
+	LDFLAGS="$(LDFLAGS_FOR_TARGET)"; export LDFLAGS; \
+	LIPO="$(LIPO_FOR_TARGET)"; export LIPO; \
+	NM="$(COMPILER_NM_FOR_TARGET)"; export NM; \
+	OBJDUMP="$(OBJDUMP_FOR_TARGET)"; export OBJDUMP; \
+	OBJCOPY="$(OBJCOPY_FOR_TARGET)"; export OBJCOPY; \
+	OTOOL="$(OTOOL_FOR_TARGET)"; export OTOOL; \
+	RANLIB="$(RANLIB_FOR_TARGET)"; export RANLIB; \
+	READELF="$(READELF_FOR_TARGET)"; export READELF; \
+	STRIP="$(STRIP_FOR_TARGET)"; export STRIP; \
+	WINDRES="$(WINDRES_FOR_TARGET)"; export WINDRES; \
+	WINDMC="$(WINDMC_FOR_TARGET)"; export WINDMC; \
+	$(RPATH_ENVVAR)=`echo "$(TARGET_LIB_PATH)$$$(RPATH_ENVVAR)" | sed 's,::*,:,g;s,^:*,,;s,:*$$,,'`; export $(RPATH_ENVVAR); \
+	$(RPATH_ENVVAR)=`echo "$(HOST_LIB_PATH)$$$(RPATH_ENVVAR)" | sed 's,::*,:,g;s,^:*,,;s,:*$$,,'`; export $(RPATH_ENVVAR); \
+	TARGET_CONFIGDIRS="$(TARGET_CONFIGDIRS)"; export TARGET_CONFIGDIRS;
+
+RAW_CXX_TARGET_EXPORTS = \
+	$(BASE_TARGET_EXPORTS) \
+	CXX_FOR_TARGET="$(RAW_CXX_FOR_TARGET)"; export CXX_FOR_TARGET; \
+	CXX="$(RAW_CXX_FOR_TARGET) $(XGCC_FLAGS_FOR_TARGET) $$TFLAGS"; export CXX;
+
+NORMAL_TARGET_EXPORTS = \
+	$(BASE_TARGET_EXPORTS) \
+	CXX="$(CXX_FOR_TARGET) $(XGCC_FLAGS_FOR_TARGET) $$TFLAGS"; export CXX;
+
+# Where to find GMP
+HOST_GMPLIBS = -lmpc -lmpfr -lgmp
+HOST_GMPINC = 
+
+# Where to find isl
+HOST_ISLLIBS = 
+HOST_ISLINC = 
+
+# ----------------------------------------------
+# Programs producing files for the BUILD machine
+# ----------------------------------------------
+
+SHELL = /bin/bash
+
+# pwd command to use.  Allow user to override default by setting PWDCMD in
+# the environment to account for automounters.  The make variable must not
+# be called PWDCMD, otherwise the value set here is passed to make
+# subprocesses and overrides the setting from the user's environment.
+# Don't use PWD since it is a common shell environment variable and we
+# don't want to corrupt it.
+PWD_COMMAND = pwd
+
+# compilers to use to create programs which must be run in the build
+# environment.
+AR_FOR_BUILD = $(AR)
+AS_FOR_BUILD = $(AS)
+CC_FOR_BUILD = $(CC)
+CFLAGS_FOR_BUILD = -g -O2
+CPP_FOR_BUILD = 
+CPPFLAGS_FOR_BUILD = 
+CXXFLAGS_FOR_BUILD = -g -O2
+CXX_FOR_BUILD = $(CXX)
+DLLTOOL_FOR_BUILD = $(DLLTOOL)
+DSYMUTIL_FOR_BUILD = $(DSYMUTIL)
+GFORTRAN_FOR_BUILD = $(GFORTRAN)
+GOC_FOR_BUILD = $(GOC)
+GDC_FOR_BUILD = $(GDC)
+LDFLAGS_FOR_BUILD = 
+LD_FOR_BUILD = $(LD)
+NM_FOR_BUILD = $(NM)
+RANLIB_FOR_BUILD = $(RANLIB)
+WINDMC_FOR_BUILD = $(WINDMC)
+WINDRES_FOR_BUILD = $(WINDRES)
+
+# Special variables passed down in EXTRA_GCC_FLAGS.  They are defined
+# here so that they can be overridden by Makefile fragments.
+BUILD_PREFIX = @BUILD_PREFIX@
+BUILD_PREFIX_1 = @BUILD_PREFIX_1@
+
+# Flags to pass to stage2 and later makes.  They are defined
+# here so that they can be overridden by Makefile fragments.
+BOOT_CFLAGS= -g -O2
+BOOT_LDFLAGS=
+BOOT_ADAFLAGS= -gnatpg
+
+AWK = mawk
+SED = /usr/bin/sed
+BISON = bison
+YACC = bison -y
+FLEX = flex
+LEX = flex
+M4 = m4
+MAKEINFO = /media/neon/32MicroSd/psp/CPP_TO_C/gcc/gcc-master/missing makeinfo
+EXPECT = expect
+RUNTEST = runtest
+
+AUTO_PROFILE = gcc-auto-profile -c 10000000
+
+# This just becomes part of the MAKEINFO definition passed down to
+# sub-makes.  It lets flags be given on the command line while still
+# using the makeinfo from the object tree.
+# (Default to avoid splitting info files by setting the threshold high.)
+MAKEINFOFLAGS = --split-size=5000000
+
+# ---------------------------------------------
+# Programs producing files for the HOST machine
+# ---------------------------------------------
+
+AS = as
+AR = ar
+AR_FLAGS = rc
+CC = gcc
+CXX = g++ -std=c++11
+DLLTOOL = dlltool
+DSYMUTIL = dsymutil
+LD = ld
+LIPO = lipo
+NM = nm
+OBJDUMP = objdump
+OTOOL = otool
+RANLIB = ranlib
+READELF = readelf
+STRIP = strip
+WINDRES = windres
+WINDMC = windmc
+
+GDC = no
+GNATBIND = no
+GNATMAKE = no
+
+CFLAGS = -g -O2
+LDFLAGS = 
+LIBCFLAGS = $(CFLAGS)
+CXXFLAGS = -g -O2
+LIBCXXFLAGS = $(CXXFLAGS) -fno-implicit-templates
+GOCFLAGS = $(CFLAGS)
+GDCFLAGS = $(CFLAGS)
+
+# Pass additional PGO and LTO compiler options to the PGO build.
+BUILD_CFLAGS = $(PGO_BUILD_CFLAGS) $(PGO_BUILD_LTO_CFLAGS)
+override CFLAGS += $(BUILD_CFLAGS)
+override CXXFLAGS += $(BUILD_CFLAGS)
+
+# Additional PGO and LTO compiler options to generate profiling data
+# for the PGO build.
+PGO_BUILD_GEN_FLAGS_TO_PASS = \
+	PGO_BUILD_CFLAGS="" \
+	PGO_BUILD_LTO_CFLAGS=""
+
+# NB: Filter out any compiler options which may fail PGO training runs.
+PGO_BUILD_TRAINING_CFLAGS:= \
+	$(filter-out -Werror=%,$(CFLAGS))
+PGO_BUILD_TRAINING_CXXFLAGS:=\
+	$(filter-out -Werror=%,$(CXXFLAGS))
+PGO_BUILD_TRAINING_CFLAGS:= \
+	$(filter-out -Wall,$(PGO_BUILD_TRAINING_CFLAGS))
+PGO_BUILD_TRAINING_CXXFLAGS:= \
+	$(filter-out -Wall,$(PGO_BUILD_TRAINING_CXXFLAGS))
+PGO_BUILD_TRAINING_CFLAGS:= \
+	$(filter-out -specs=%,$(PGO_BUILD_TRAINING_CFLAGS))
+PGO_BUILD_TRAINING_CXXFLAGS:= \
+	$(filter-out -specs=%,$(PGO_BUILD_TRAINING_CXXFLAGS))
+PGO_BUILD_TRAINING_FLAGS_TO_PASS = \
+	PGO_BUILD_TRAINING=yes \
+	CFLAGS_FOR_TARGET="$(PGO_BUILD_TRAINING_CFLAGS)" \
+	CXXFLAGS_FOR_TARGET="$(PGO_BUILD_TRAINING_CXXFLAGS)"
+
+# Ignore "make check" errors in PGO training runs.
+PGO_BUILD_TRAINING_MFLAGS = -i
+
+# Additional PGO and LTO compiler options to use profiling data for the
+# PGO build.
+PGO_BUILD_USE_FLAGS_TO_PASS = \
+	PGO_BUILD_CFLAGS="" \
+	PGO_BUILD_LTO_CFLAGS=""
+
+# PGO training targets for the PGO build.  FIXME: Add gold tests to
+# training.
+PGO-TRAINING-TARGETS = binutils gas gdb ld sim
+PGO_BUILD_TRAINING = $(addprefix maybe-check-,$(PGO-TRAINING-TARGETS))
+
+CREATE_GCOV = create_gcov
+
+TFLAGS =
+
+# Defaults for all stages; some are overridden below.
+
+STAGE_CFLAGS = $(BOOT_CFLAGS)
+STAGE_TFLAGS = $(TFLAGS)
+STAGE_CONFIGURE_FLAGS=--enable-werror-always
+
+
+# Defaults for stage 1; some are overridden below.
+STAGE1_CFLAGS = $(STAGE_CFLAGS)
+STAGE1_CXXFLAGS = $(CXXFLAGS)
+# Override the above if we're bootstrapping C++.
+STAGE1_CXXFLAGS = $(STAGE1_CFLAGS)
+STAGE1_TFLAGS = $(STAGE_TFLAGS)
+STAGE1_CONFIGURE_FLAGS = $(STAGE_CONFIGURE_FLAGS)
+
+# Defaults for stage 2; some are overridden below.
+STAGE2_CFLAGS = $(STAGE_CFLAGS)
+STAGE2_CXXFLAGS = $(CXXFLAGS)
+# Override the above if we're bootstrapping C++.
+STAGE2_CXXFLAGS = $(STAGE2_CFLAGS)
+STAGE2_TFLAGS = $(STAGE_TFLAGS)
+STAGE2_CONFIGURE_FLAGS = $(STAGE_CONFIGURE_FLAGS)
+
+# Defaults for stage 3; some are overridden below.
+STAGE3_CFLAGS = $(STAGE_CFLAGS)
+STAGE3_CXXFLAGS = $(CXXFLAGS)
+# Override the above if we're bootstrapping C++.
+STAGE3_CXXFLAGS = $(STAGE3_CFLAGS)
+STAGE3_TFLAGS = $(STAGE_TFLAGS)
+STAGE3_CONFIGURE_FLAGS = $(STAGE_CONFIGURE_FLAGS)
+
+# Defaults for stage 4; some are overridden below.
+STAGE4_CFLAGS = $(STAGE_CFLAGS)
+STAGE4_CXXFLAGS = $(CXXFLAGS)
+# Override the above if we're bootstrapping C++.
+STAGE4_CXXFLAGS = $(STAGE4_CFLAGS)
+STAGE4_TFLAGS = $(STAGE_TFLAGS)
+STAGE4_CONFIGURE_FLAGS = $(STAGE_CONFIGURE_FLAGS)
+
+# Defaults for stage profile; some are overridden below.
+STAGEprofile_CFLAGS = $(STAGE_CFLAGS)
+STAGEprofile_CXXFLAGS = $(CXXFLAGS)
+# Override the above if we're bootstrapping C++.
+STAGEprofile_CXXFLAGS = $(STAGEprofile_CFLAGS)
+STAGEprofile_TFLAGS = $(STAGE_TFLAGS)
+STAGEprofile_CONFIGURE_FLAGS = $(STAGE_CONFIGURE_FLAGS)
+
+# Defaults for stage train; some are overridden below.
+STAGEtrain_CFLAGS = $(STAGE_CFLAGS)
+STAGEtrain_CXXFLAGS = $(CXXFLAGS)
+# Override the above if we're bootstrapping C++.
+STAGEtrain_CXXFLAGS = $(STAGEtrain_CFLAGS)
+STAGEtrain_TFLAGS = $(STAGE_TFLAGS)
+STAGEtrain_CONFIGURE_FLAGS = $(STAGE_CONFIGURE_FLAGS)
+
+# Defaults for stage feedback; some are overridden below.
+STAGEfeedback_CFLAGS = $(STAGE_CFLAGS)
+STAGEfeedback_CXXFLAGS = $(CXXFLAGS)
+# Override the above if we're bootstrapping C++.
+STAGEfeedback_CXXFLAGS = $(STAGEfeedback_CFLAGS)
+STAGEfeedback_TFLAGS = $(STAGE_TFLAGS)
+STAGEfeedback_CONFIGURE_FLAGS = $(STAGE_CONFIGURE_FLAGS)
+
+# Defaults for stage autoprofile; some are overridden below.
+STAGEautoprofile_CFLAGS = $(STAGE_CFLAGS)
+STAGEautoprofile_CXXFLAGS = $(CXXFLAGS)
+# Override the above if we're bootstrapping C++.
+STAGEautoprofile_CXXFLAGS = $(STAGEautoprofile_CFLAGS)
+STAGEautoprofile_TFLAGS = $(STAGE_TFLAGS)
+STAGEautoprofile_CONFIGURE_FLAGS = $(STAGE_CONFIGURE_FLAGS)
+
+# Defaults for stage autofeedback; some are overridden below.
+STAGEautofeedback_CFLAGS = $(STAGE_CFLAGS)
+STAGEautofeedback_CXXFLAGS = $(CXXFLAGS)
+# Override the above if we're bootstrapping C++.
+STAGEautofeedback_CXXFLAGS = $(STAGEautofeedback_CFLAGS)
+STAGEautofeedback_TFLAGS = $(STAGE_TFLAGS)
+STAGEautofeedback_CONFIGURE_FLAGS = $(STAGE_CONFIGURE_FLAGS)
+
+
+# By default, C and C++ are the only stage1 languages, because they are the
+# only ones we require to build with the bootstrap compiler, and also the
+# only ones useful for building stage2.
+
+STAGE1_CFLAGS = -g
+STAGE1_CHECKING = --enable-checking=yes,types,extra
+STAGE1_LANGUAGES = c,c++,lto
+# * We force-disable intermodule optimizations, even if
+#   --enable-intermodule was passed, since the installed compiler
+#   probably can't handle them.  Luckily, autoconf always respects
+#   the last argument when conflicting --enable arguments are passed.
+# * Likewise, we force-disable coverage flags, since the installed
+#   compiler probably has never heard of them.
+# * We also disable -Wformat, since older GCCs don't understand newer %s.
+STAGE1_CONFIGURE_FLAGS = --disable-intermodule $(STAGE1_CHECKING) \
+	  --disable-coverage --enable-languages="$(STAGE1_LANGUAGES)" \
+	  --disable-build-format-warnings
+
+
+# When using the slow stage1 compiler disable IL verification and forcefully
+# enable it when using the stage2 compiler instead.  As we later compare
+# stage2 and stage3 we are merely avoid doing redundant work, plus we apply
+# checking when building all target libraries for release builds.
+STAGE1_TFLAGS += -fno-checking
+STAGE2_CFLAGS += -fno-checking
+STAGE2_TFLAGS += -fno-checking
+STAGE3_CFLAGS += -fchecking=1
+STAGE3_TFLAGS += -fchecking=1
+
+STAGEprofile_CFLAGS = $(STAGE2_CFLAGS) -fprofile-generate
+STAGEprofile_TFLAGS = $(STAGE2_TFLAGS)
+
+STAGEtrain_CFLAGS = $(filter-out -fchecking=1,$(STAGE3_CFLAGS))
+STAGEtrain_TFLAGS = $(filter-out -fchecking=1,$(STAGE3_TFLAGS))
+
+STAGEfeedback_CFLAGS = $(STAGE4_CFLAGS) -fprofile-use -fprofile-reproducible=parallel-runs
+STAGEfeedback_TFLAGS = $(STAGE4_TFLAGS)
+
+STAGEautoprofile_CFLAGS = $(STAGE2_CFLAGS) -g
+STAGEautoprofile_TFLAGS = $(STAGE2_TFLAGS)
+
+STAGEautofeedback_CFLAGS = $(STAGE3_CFLAGS)
+STAGEautofeedback_TFLAGS = $(STAGE3_TFLAGS)
+
+do-compare = cmp --ignore-initial=16 $$f1 $$f2
+do-compare3 = $(do-compare)
+
+# -----------------------------------------------
+# Programs producing files for the TARGET machine
+# -----------------------------------------------
+
+AR_FOR_TARGET=$(AR)
+AS_FOR_TARGET=$(AS)
+CC_FOR_TARGET=$(STAGE_CC_WRAPPER) $$r/$(HOST_SUBDIR)/gcc/xgcc -B$$r/$(HOST_SUBDIR)/gcc/
+
+# If GCC_FOR_TARGET is not overriden on the command line, then this
+# variable is passed down to the gcc Makefile, where it is used to
+# build libgcc2.a.  We define it here so that it can itself be
+# overridden on the command line.
+GCC_FOR_TARGET=$(STAGE_CC_WRAPPER) $$r/$(HOST_SUBDIR)/gcc/xgcc -B$$r/$(HOST_SUBDIR)/gcc/
+CXX_FOR_TARGET=$(STAGE_CC_WRAPPER) $$r/$(HOST_SUBDIR)/gcc/xg++ -B$$r/$(HOST_SUBDIR)/gcc/ -nostdinc++ `if test -f $$r/$(TARGET_SUBDIR)/libstdc++-v3/scripts/testsuite_flags; then $(SHELL) $$r/$(TARGET_SUBDIR)/libstdc++-v3/scripts/testsuite_flags --build-includes; else echo -funconfigured-libstdc++-v3 ; fi` -L$$r/$(TARGET_SUBDIR)/libstdc++-v3/src -L$$r/$(TARGET_SUBDIR)/libstdc++-v3/src/.libs -L$$r/$(TARGET_SUBDIR)/libstdc++-v3/libsupc++/.libs
+RAW_CXX_FOR_TARGET=$(STAGE_CC_WRAPPER) $$r/$(HOST_SUBDIR)/gcc/xgcc -shared-libgcc -B$$r/$(HOST_SUBDIR)/gcc -nostdinc++ -L$$r/$(TARGET_SUBDIR)/libstdc++-v3/src -L$$r/$(TARGET_SUBDIR)/libstdc++-v3/src/.libs -L$$r/$(TARGET_SUBDIR)/libstdc++-v3/libsupc++/.libs
+GFORTRAN_FOR_TARGET=$(STAGE_CC_WRAPPER) $(GFORTRAN)
+GOC_FOR_TARGET=$(STAGE_CC_WRAPPER) $(GOC)
+GDC_FOR_TARGET=$(STAGE_CC_WRAPPER) $(GDC)
+DLLTOOL_FOR_TARGET=$(DLLTOOL)
+DSYMUTIL_FOR_TARGET=$(DSYMUTIL)
+LD_FOR_TARGET=$(LD)
+
+LIPO_FOR_TARGET=$(LIPO)
+NM_FOR_TARGET=$(NM)
+OBJDUMP_FOR_TARGET=$(OBJDUMP)
+OBJCOPY_FOR_TARGET=$(OBJCOPY)
+OTOOL_FOR_TARGET=$(OTOOL)
+RANLIB_FOR_TARGET=$(RANLIB)
+READELF_FOR_TARGET=$(READELF)
+STRIP_FOR_TARGET=$(STRIP)
+WINDRES_FOR_TARGET=$(WINDRES)
+WINDMC_FOR_TARGET=$(WINDMC)
+
+COMPILER_AS_FOR_TARGET=$$r/$(HOST_SUBDIR)/gcc/as
+COMPILER_LD_FOR_TARGET=$$r/$(HOST_SUBDIR)/gcc/collect-ld
+COMPILER_NM_FOR_TARGET=$$r/$(HOST_SUBDIR)/gcc/nm
+
+CFLAGS_FOR_TARGET = -g -O2
+CXXFLAGS_FOR_TARGET = -g -O2
+
+LIBCFLAGS_FOR_TARGET = $(CFLAGS_FOR_TARGET)
+LIBCXXFLAGS_FOR_TARGET = $(CXXFLAGS_FOR_TARGET) -fno-implicit-templates
+LDFLAGS_FOR_TARGET = 
+GOCFLAGS_FOR_TARGET = -O2 -g
+GDCFLAGS_FOR_TARGET = -O2 -g
+
+FLAGS_FOR_TARGET =  -B$(build_tooldir)/bin/ -B$(build_tooldir)/lib/ -isystem $(build_tooldir)/include -isystem $(build_tooldir)/sys-include
+SYSROOT_CFLAGS_FOR_TARGET = 
+DEBUG_PREFIX_CFLAGS_FOR_TARGET = 
+
+XGCC_FLAGS_FOR_TARGET = $(FLAGS_FOR_TARGET) $(SYSROOT_CFLAGS_FOR_TARGET) $(DEBUG_PREFIX_CFLAGS_FOR_TARGET)
+
+# ------------------------------------
+# Miscellaneous targets and flag lists
+# ------------------------------------
+
+#### host and target specific makefile fragments come in here.
+CXXFLAGS_FOR_TARGET += -D_GNU_SOURCE
+###
+
+# This is the list of directories that may be needed in RPATH_ENVVAR
+# so that programs built for the target machine work.
+TARGET_LIB_PATH = $(TARGET_LIB_PATH_libstdc++-v3)$(TARGET_LIB_PATH_libsanitizer)$(TARGET_LIB_PATH_libvtv)$(TARGET_LIB_PATH_liboffloadmic)$(TARGET_LIB_PATH_libssp)$(TARGET_LIB_PATH_libphobos)$(TARGET_LIB_PATH_libgomp)$(TARGET_LIB_PATH_libitm)$(TARGET_LIB_PATH_libatomic)$(HOST_LIB_PATH_gcc)
+
+TARGET_LIB_PATH_libstdc++-v3 = $$r/$(TARGET_SUBDIR)/libstdc++-v3/src/.libs:
+
+TARGET_LIB_PATH_libsanitizer = $$r/$(TARGET_SUBDIR)/libsanitizer/.libs:
+
+TARGET_LIB_PATH_libvtv = $$r/$(TARGET_SUBDIR)/libvtv/.libs:
+
+
+TARGET_LIB_PATH_libssp = $$r/$(TARGET_SUBDIR)/libssp/.libs:
+
+
+TARGET_LIB_PATH_libgomp = $$r/$(TARGET_SUBDIR)/libgomp/.libs:
+
+TARGET_LIB_PATH_libitm = $$r/$(TARGET_SUBDIR)/libitm/.libs:
+
+TARGET_LIB_PATH_libatomic = $$r/$(TARGET_SUBDIR)/libatomic/.libs:
+
+
+
+# This is the list of directories that may be needed in RPATH_ENVVAR
+# so that programs built for the host machine work.
+HOST_LIB_PATH = $(HOST_LIB_PATH_gmp)$(HOST_LIB_PATH_mpfr)$(HOST_LIB_PATH_mpc)$(HOST_LIB_PATH_isl)
+
+# Define HOST_LIB_PATH_gcc here, for the sake of TARGET_LIB_PATH, ouch
+HOST_LIB_PATH_gcc = $$r/$(HOST_SUBDIR)/gcc$(GCC_SHLIB_SUBDIR):$$r/$(HOST_SUBDIR)/prev-gcc$(GCC_SHLIB_SUBDIR):
+
+
+
+
+
+
+
+CXX_FOR_TARGET_FLAG_TO_PASS = \
+	"CXX_FOR_TARGET=$(CXX_FOR_TARGET)"
+# CXX_FOR_TARGET is tricky to get right for target libs that require a
+# functional C++ compiler.  When we recurse, if we expand
+# CXX_FOR_TARGET before configuring libstdc++-v3, we won't get
+# libstdc++ include flags from the script.  Instead, we get an
+# -funconfigured-* word, so that we'll get errors if this invalid C++
+# command line is used for anything, but also so that we can use the
+# word to decide whether or not to pass on this CXX_FOR_TARGET.  If we
+# don't pass it on, sub-make will use the default definition, that
+# re-expands it at the time of use, so we'll get it right when we need
+# it.  One potential exception is the expansion of CXX_FOR_TARGET
+# passed down as part of CXX within TARGET_FLAGS, but this wouldn't
+# really work, for C++ host programs can't depend on the current-stage
+# C++ target library.
+CXX_FOR_TARGET_FLAG_TO_PASS = \
+	$(shell if echo "$(CXX_FOR_TARGET)" | grep " -funconfigured-" > /dev/null; then :; else echo '"CXX_FOR_TARGET=$(CXX_FOR_TARGET)"'; fi)
+
+# Flags to pass down to all sub-makes. STAGE*FLAGS,
+# MAKEINFO and MAKEINFOFLAGS are explicitly passed here to make them
+# overrideable (for a bootstrap build stage1 also builds gcc.info).
+BASE_FLAGS_TO_PASS = \
+	"DESTDIR=$(DESTDIR)" \
+	"RPATH_ENVVAR=$(RPATH_ENVVAR)" \
+	"TARGET_SUBDIR=$(TARGET_SUBDIR)" \
+	"bindir=$(bindir)" \
+	"datadir=$(datadir)" \
+	"exec_prefix=$(exec_prefix)" \
+	"includedir=$(includedir)" \
+	"datarootdir=$(datarootdir)" \
+	"docdir=$(docdir)" \
+	"infodir=$(infodir)" \
+	"pdfdir=$(pdfdir)" \
+	"htmldir=$(htmldir)" \
+	"libdir=$(libdir)" \
+	"libexecdir=$(libexecdir)" \
+	"lispdir=$(lispdir)" \
+	"localstatedir=$(localstatedir)" \
+	"mandir=$(mandir)" \
+	"oldincludedir=$(oldincludedir)" \
+	"prefix=$(prefix)" \
+	"sbindir=$(sbindir)" \
+	"sharedstatedir=$(sharedstatedir)" \
+	"sysconfdir=$(sysconfdir)" \
+	"tooldir=$(tooldir)" \
+	"build_tooldir=$(build_tooldir)" \
+	"target_alias=$(target_alias)" \
+	"AWK=$(AWK)" \
+	"BISON=$(BISON)" \
+	"CC_FOR_BUILD=$(CC_FOR_BUILD)" \
+	"CFLAGS_FOR_BUILD=$(CFLAGS_FOR_BUILD)" \
+	"CXX_FOR_BUILD=$(CXX_FOR_BUILD)" \
+	"EXPECT=$(EXPECT)" \
+	"FLEX=$(FLEX)" \
+	"INSTALL=$(INSTALL)" \
+	"INSTALL_DATA=$(INSTALL_DATA)" \
+	"INSTALL_PROGRAM=$(INSTALL_PROGRAM)" \
+	"INSTALL_SCRIPT=$(INSTALL_SCRIPT)" \
+	"LDFLAGS_FOR_BUILD=$(LDFLAGS_FOR_BUILD)" \
+	"LEX=$(LEX)" \
+	"M4=$(M4)" \
+	"MAKE=$(MAKE)" \
+	"RUNTEST=$(RUNTEST)" \
+	"RUNTESTFLAGS=$(RUNTESTFLAGS)" \
+	"SED=$(SED)" \
+	"SHELL=$(SHELL)" \
+	"YACC=$(YACC)" \
+	"`echo 'ADAFLAGS=$(ADAFLAGS)' | sed -e s'/[^=][^=]*=$$/XFOO=/'`" \
+	"ADA_CFLAGS=$(ADA_CFLAGS)" \
+	"AR_FLAGS=$(AR_FLAGS)" \
+	"`echo 'BOOT_ADAFLAGS=$(BOOT_ADAFLAGS)' | sed -e s'/[^=][^=]*=$$/XFOO=/'`" \
+	"BOOT_CFLAGS=$(BOOT_CFLAGS)" \
+	"BOOT_LDFLAGS=$(BOOT_LDFLAGS)" \
+	"CFLAGS=$(CFLAGS)" \
+	"CXXFLAGS=$(CXXFLAGS)" \
+	"LDFLAGS=$(LDFLAGS)" \
+	"LIBCFLAGS=$(LIBCFLAGS)" \
+	"LIBCXXFLAGS=$(LIBCXXFLAGS)" \
+	"STAGE1_CHECKING=$(STAGE1_CHECKING)" \
+	"STAGE1_LANGUAGES=$(STAGE1_LANGUAGES)" \
+	"GNATBIND=$(GNATBIND)" \
+	"GNATMAKE=$(GNATMAKE)" \
+	"GDC=$(GDC)" \
+	"GDCFLAGS=$(GDCFLAGS)" \
+	"AR_FOR_TARGET=$(AR_FOR_TARGET)" \
+	"AS_FOR_TARGET=$(AS_FOR_TARGET)" \
+	"CC_FOR_TARGET=$(CC_FOR_TARGET)" \
+	"CFLAGS_FOR_TARGET=$(CFLAGS_FOR_TARGET)" \
+	"CPPFLAGS_FOR_TARGET=$(CPPFLAGS_FOR_TARGET)" \
+	"CXXFLAGS_FOR_TARGET=$(CXXFLAGS_FOR_TARGET)" \
+	"DLLTOOL_FOR_TARGET=$(DLLTOOL_FOR_TARGET)" \
+	"DSYMUTIL_FOR_TARGET=$(DSYMUTIL_FOR_TARGET)" \
+	"FLAGS_FOR_TARGET=$(FLAGS_FOR_TARGET)" \
+	"GFORTRAN_FOR_TARGET=$(GFORTRAN_FOR_TARGET)" \
+	"GOC_FOR_TARGET=$(GOC_FOR_TARGET)" \
+	"GOCFLAGS_FOR_TARGET=$(GOCFLAGS_FOR_TARGET)" \
+	"GDC_FOR_TARGET=$(GDC_FOR_TARGET)" \
+	"GDCFLAGS_FOR_TARGET=$(GDCFLAGS_FOR_TARGET)" \
+	"LD_FOR_TARGET=$(LD_FOR_TARGET)" \
+	"LIPO_FOR_TARGET=$(LIPO_FOR_TARGET)" \
+	"LDFLAGS_FOR_TARGET=$(LDFLAGS_FOR_TARGET)" \
+	"LIBCFLAGS_FOR_TARGET=$(LIBCFLAGS_FOR_TARGET)" \
+	"LIBCXXFLAGS_FOR_TARGET=$(LIBCXXFLAGS_FOR_TARGET)" \
+	"NM_FOR_TARGET=$(NM_FOR_TARGET)" \
+	"OBJDUMP_FOR_TARGET=$(OBJDUMP_FOR_TARGET)" \
+	"OBJCOPY_FOR_TARGET=$(OBJCOPY_FOR_TARGET)" \
+	"RANLIB_FOR_TARGET=$(RANLIB_FOR_TARGET)" \
+	"READELF_FOR_TARGET=$(READELF_FOR_TARGET)" \
+	"STRIP_FOR_TARGET=$(STRIP_FOR_TARGET)" \
+	"WINDRES_FOR_TARGET=$(WINDRES_FOR_TARGET)" \
+	"WINDMC_FOR_TARGET=$(WINDMC_FOR_TARGET)" \
+	"BUILD_CONFIG=$(BUILD_CONFIG)" \
+	"`echo 'LANGUAGES=$(LANGUAGES)' | sed -e s'/[^=][^=]*=$$/XFOO=/'`" \
+	"LEAN=$(LEAN)" \
+	"STAGE1_CFLAGS=$(STAGE1_CFLAGS)" \
+	"STAGE1_CXXFLAGS=$(STAGE1_CXXFLAGS)" \
+	"STAGE1_GENERATOR_CFLAGS=$(STAGE1_GENERATOR_CFLAGS)" \
+	"STAGE1_TFLAGS=$(STAGE1_TFLAGS)" \
+	"STAGE2_CFLAGS=$(STAGE2_CFLAGS)" \
+	"STAGE2_CXXFLAGS=$(STAGE2_CXXFLAGS)" \
+	"STAGE2_GENERATOR_CFLAGS=$(STAGE2_GENERATOR_CFLAGS)" \
+	"STAGE2_TFLAGS=$(STAGE2_TFLAGS)" \
+	"STAGE3_CFLAGS=$(STAGE3_CFLAGS)" \
+	"STAGE3_CXXFLAGS=$(STAGE3_CXXFLAGS)" \
+	"STAGE3_GENERATOR_CFLAGS=$(STAGE3_GENERATOR_CFLAGS)" \
+	"STAGE3_TFLAGS=$(STAGE3_TFLAGS)" \
+	"STAGE4_CFLAGS=$(STAGE4_CFLAGS)" \
+	"STAGE4_CXXFLAGS=$(STAGE4_CXXFLAGS)" \
+	"STAGE4_GENERATOR_CFLAGS=$(STAGE4_GENERATOR_CFLAGS)" \
+	"STAGE4_TFLAGS=$(STAGE4_TFLAGS)" \
+	"STAGEprofile_CFLAGS=$(STAGEprofile_CFLAGS)" \
+	"STAGEprofile_CXXFLAGS=$(STAGEprofile_CXXFLAGS)" \
+	"STAGEprofile_GENERATOR_CFLAGS=$(STAGEprofile_GENERATOR_CFLAGS)" \
+	"STAGEprofile_TFLAGS=$(STAGEprofile_TFLAGS)" \
+	"STAGEtrain_CFLAGS=$(STAGEtrain_CFLAGS)" \
+	"STAGEtrain_CXXFLAGS=$(STAGEtrain_CXXFLAGS)" \
+	"STAGEtrain_GENERATOR_CFLAGS=$(STAGEtrain_GENERATOR_CFLAGS)" \
+	"STAGEtrain_TFLAGS=$(STAGEtrain_TFLAGS)" \
+	"STAGEfeedback_CFLAGS=$(STAGEfeedback_CFLAGS)" \
+	"STAGEfeedback_CXXFLAGS=$(STAGEfeedback_CXXFLAGS)" \
+	"STAGEfeedback_GENERATOR_CFLAGS=$(STAGEfeedback_GENERATOR_CFLAGS)" \
+	"STAGEfeedback_TFLAGS=$(STAGEfeedback_TFLAGS)" \
+	"STAGEautoprofile_CFLAGS=$(STAGEautoprofile_CFLAGS)" \
+	"STAGEautoprofile_CXXFLAGS=$(STAGEautoprofile_CXXFLAGS)" \
+	"STAGEautoprofile_GENERATOR_CFLAGS=$(STAGEautoprofile_GENERATOR_CFLAGS)" \
+	"STAGEautoprofile_TFLAGS=$(STAGEautoprofile_TFLAGS)" \
+	"STAGEautofeedback_CFLAGS=$(STAGEautofeedback_CFLAGS)" \
+	"STAGEautofeedback_CXXFLAGS=$(STAGEautofeedback_CXXFLAGS)" \
+	"STAGEautofeedback_GENERATOR_CFLAGS=$(STAGEautofeedback_GENERATOR_CFLAGS)" \
+	"STAGEautofeedback_TFLAGS=$(STAGEautofeedback_TFLAGS)" \
+	$(CXX_FOR_TARGET_FLAG_TO_PASS) \
+	"TFLAGS=$(TFLAGS)" \
+	"CONFIG_SHELL=$(SHELL)" \
+	"MAKEINFO=$(MAKEINFO) $(MAKEINFOFLAGS)" \
+	$(if $(LSAN_OPTIONS),"LSAN_OPTIONS=$(LSAN_OPTIONS)")
+
+# We leave this in just in case, but it is not needed anymore.
+RECURSE_FLAGS_TO_PASS = $(BASE_FLAGS_TO_PASS)
+
+# Flags to pass down to most sub-makes, in which we're building with
+# the host environment.
+EXTRA_HOST_FLAGS = \
+	'AR=$(AR)' \
+	'AS=$(AS)' \
+	'CC=$(CC)' \
+	'CXX=$(CXX)' \
+	'DLLTOOL=$(DLLTOOL)' \
+	'DSYMUTIL=$(DSYMUTIL)' \
+	'GFORTRAN=$(GFORTRAN)' \
+	'GOC=$(GOC)' \
+	'GDC=$(GDC)' \
+	'LD=$(LD)' \
+	'LIPO=$(LIPO)' \
+	'NM=$(NM)' \
+	'OBJDUMP=$(OBJDUMP)' \
+	'OTOOL=$(OTOOL)' \
+	'RANLIB=$(RANLIB)' \
+	'READELF=$(READELF)' \
+	'STRIP=$(STRIP)' \
+	'WINDRES=$(WINDRES)' \
+	'WINDMC=$(WINDMC)' \
+	'CREATE_GCOV=$(CREATE_GCOV)'
+
+FLAGS_TO_PASS = $(BASE_FLAGS_TO_PASS) $(EXTRA_HOST_FLAGS)
+
+# Flags to pass to stage1 or when not bootstrapping.
+
+STAGE1_FLAGS_TO_PASS = \
+	LDFLAGS="$${LDFLAGS}" \
+	HOST_LIBS="$${HOST_LIBS}"
+
+# Flags to pass to stage2 and later makes.
+
+POSTSTAGE1_FLAGS_TO_PASS = \
+	CC="$${CC}" CC_FOR_BUILD="$${CC_FOR_BUILD}" \
+	CXX="$${CXX}" CXX_FOR_BUILD="$${CXX_FOR_BUILD}" \
+	GDC="$${GDC}" GDC_FOR_BUILD="$${GDC_FOR_BUILD}" \
+	GNATBIND="$${GNATBIND}" \
+	LDFLAGS="$${LDFLAGS}" \
+	HOST_LIBS="$${HOST_LIBS}" \
+	$(LTO_FLAGS_TO_PASS) \
+	"`echo 'ADAFLAGS=$(BOOT_ADAFLAGS)' | sed -e s'/[^=][^=]*=$$/XFOO=/'`"
+
+EXTRA_HOST_EXPORTS = if [ $(current_stage) != stage1 ]; then \
+		       $(POSTSTAGE1_HOST_EXPORTS) \
+		     fi;
+
+EXTRA_BOOTSTRAP_FLAGS = CC="$$CC" CXX="$$CXX" LDFLAGS="$$LDFLAGS"
+
+# Flags to pass down to makes which are built with the target environment.
+# The double $ decreases the length of the command line; those variables
+# are set in BASE_FLAGS_TO_PASS, and the sub-make will expand them.  The
+# *_CFLAGS_FOR_TARGET variables are not passed down and most often empty,
+# so we expand them here.
+EXTRA_TARGET_FLAGS = \
+	'AR=$$(AR_FOR_TARGET)' \
+	'AS=$(COMPILER_AS_FOR_TARGET)' \
+	'CC=$$(CC_FOR_TARGET) $$(XGCC_FLAGS_FOR_TARGET) $$(TFLAGS)' \
+	'CFLAGS=$$(CFLAGS_FOR_TARGET)' \
+	'CXX=$$(CXX_FOR_TARGET) -B$$r/$$(TARGET_SUBDIR)/libstdc++-v3/src/.libs \
+	 -B$$r/$$(TARGET_SUBDIR)/libstdc++-v3/libsupc++/.libs \
+	 $$(XGCC_FLAGS_FOR_TARGET) $$(TFLAGS)' \
+	'CXXFLAGS=$$(CXXFLAGS_FOR_TARGET)' \
+	'DLLTOOL=$$(DLLTOOL_FOR_TARGET)' \
+	'DSYMUTIL=$$(DSYMUTIL_FOR_TARGET)' \
+	'GFORTRAN=$$(GFORTRAN_FOR_TARGET) $$(XGCC_FLAGS_FOR_TARGET) $$(TFLAGS)' \
+	'GOC=$$(GOC_FOR_TARGET) $$(XGCC_FLAGS_FOR_TARGET) $$(TFLAGS)' \
+	'GOCFLAGS=$$(GOCFLAGS_FOR_TARGET)' \
+	'GDC=$$(GDC_FOR_TARGET) $$(XGCC_FLAGS_FOR_TARGET) $$(TFLAGS)' \
+	'GDCFLAGS=$$(GDCFLAGS_FOR_TARGET)' \
+	'LD=$(COMPILER_LD_FOR_TARGET)' \
+	'LDFLAGS=$$(LDFLAGS_FOR_TARGET)' \
+	'LIBCFLAGS=$$(LIBCFLAGS_FOR_TARGET)' \
+	'LIBCXXFLAGS=$$(LIBCXXFLAGS_FOR_TARGET)' \
+	'NM=$(COMPILER_NM_FOR_TARGET)' \
+	'OBJDUMP=$$(OBJDUMP_FOR_TARGET)' \
+	'OBJCOPY=$$(OBJCOPY_FOR_TARGET)' \
+	'RANLIB=$$(RANLIB_FOR_TARGET)' \
+	'READELF=$$(READELF_FOR_TARGET)' \
+	'WINDRES=$$(WINDRES_FOR_TARGET)' \
+	'WINDMC=$$(WINDMC_FOR_TARGET)' \
+	'XGCC_FLAGS_FOR_TARGET=$(XGCC_FLAGS_FOR_TARGET)' \
+	'STAGE1_LDFLAGS=$$(POSTSTAGE1_LDFLAGS)' \
+	'STAGE1_LIBS=$$(POSTSTAGE1_LIBS)' \
+	"TFLAGS=$$TFLAGS"
+
+TARGET_FLAGS_TO_PASS = $(BASE_FLAGS_TO_PASS) $(EXTRA_TARGET_FLAGS)
+
+# Flags to pass down to gcc.  gcc builds a library, libgcc.a, so it
+# unfortunately needs the native compiler and the target ar and
+# ranlib.
+# If any variables are added here, they must be added to do-*, below.
+# The BUILD_* variables are a special case, which are used for the gcc
+# cross-building scheme.
+EXTRA_GCC_FLAGS = \
+	"GCC_FOR_TARGET=$(GCC_FOR_TARGET) $$TFLAGS" \
+	"`echo 'STMP_FIXPROTO=$(STMP_FIXPROTO)' | sed -e s'/[^=][^=]*=$$/XFOO=/'`" \
+	"`echo 'LIMITS_H_TEST=$(LIMITS_H_TEST)' | sed -e s'/[^=][^=]*=$$/XFOO=/'`"
+
+GCC_FLAGS_TO_PASS = $(BASE_FLAGS_TO_PASS) $(EXTRA_HOST_FLAGS) $(EXTRA_GCC_FLAGS)
+GEN_GCC_FLAGS=--disable-multilib --enable-languages=c
+GCC_OBJECTS_DIRECTORY:
+	 mkdir GCC_OBJECTS_DIRECTORY
+clean_GCC_OBJECTS_DIRECTORY:
+	 rm -rf GCC_OBJECTS_DIRECTORY
+clean_libcpp:
+	 rm -rf GCC_OBJECTS_DIRECTORY/libcpp
+GCC_OBJECTS_DIRECTORY/libcpp: GCC_OBJECTS_DIRECTORY
+	 mkdir -p GCC_OBJECTS_DIRECTORY/libcpp
+GCC_OBJECTS_DIRECTORY/libcpp/config.status: GCC_OBJECTS_DIRECTORY/libcpp
+	 $(HOST_EXPORTS)
+	 cd GCC_OBJECTS_DIRECTORY/libcpp ; $(HOST_EXPORTS) $(SHELL) ../../cpp/libcpp/configure --srcdir=../../cpp/libcpp $(HOST_CONFIGARGS) --build=${build_alias} --host=${host_alias} --target=${target_alias} --enable-shared
+libcpp: GCC_OBJECTS_DIRECTORY/libcpp GCC_OBJECTS_DIRECTORY/libcpp/config.status
+	 make -C GCC_OBJECTS_DIRECTORY/libcpp
+all: libcpp 
+clean: clean_libcpp  clean_GCC_OBJECTS_DIRECTORY
