@@ -1,0 +1,35 @@
+
+release: /usr/bin/mawk.exe build_gcc
+
+GEN_GCC=bash ./gen-make.sh make_gcc cpp
+BUILD_GCC=make -f make_gcc libcpp --eval="HOST_SUBDIR=$(pwd)"
+CLEAN_GCC=make -f make_gcc clean
+
+build_gcc:
+	$(GEN_GCC)
+	$(BUILD_GCC)
+
+unzip:
+	git clone https://github.com/LuaDist/unzip
+	bash -c "cd unzip ; ../change_windows_line_endings_to_linux_line_endings.sh"
+
+
+/usr/local/bin/unzip.exe: unzip
+	cmake -S unzip -B unzip/build
+	make -C unzip/build
+	make -C unzip/build install
+	rm -rf unzip
+
+mawk-mingw64.zip:
+	wget https://invisible-island.net/datafiles/release/mawk-mingw64.zip
+
+/usr/bin/mawk.exe: /usr/local/bin/unzip.exe mawk-mingw64.zip
+	mkdir mawk
+	unzip mawk-mingw64.zip -d mawk
+	mv mawk/bin/mawk.exe /usr/bin/mawk.exe
+	rm -rf mawk
+	rm -f mawk-mingw64.zip	
+
+clean:
+	$(GEN_GCC)
+	$(CLEAN_GCC)

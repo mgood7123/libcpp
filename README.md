@@ -2,8 +2,24 @@
 
 ## compiling
 
+##### linux
+
 ```sh
-make clean ; make
+make -f makefile.linux clean ; make -f makefile.linux
+```
+
+`libcpp.a` is generated in `GCC_OBJECTS_DIRECTORY/libcpp/libcpp.a`
+
+##### windows
+
+building is recommended from cygwin
+
+
+needed packages from cygwin installer: gcc, g++, make, bison, automake
+
+
+```sh
+make -f makefile.windows clean ; make -f makefile.windows
 ```
 
 `libcpp.a` is generated in `GCC_OBJECTS_DIRECTORY/libcpp/libcpp.a`
