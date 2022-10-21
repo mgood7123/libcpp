@@ -2,7 +2,7 @@
 
 ## compiling
 
-##### linux
+### linux
 
 ```sh
 make -f makefile.linux clean ; make -f makefile.linux
@@ -10,7 +10,7 @@ make -f makefile.linux clean ; make -f makefile.linux
 
 `libcpp.a` is generated in `GCC_OBJECTS_DIRECTORY/libcpp/libcpp.a`
 
-##### windows
+### windows
 
 building is recommended from cygwin
 
