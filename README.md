@@ -2,7 +2,7 @@
 
 consult GCC documentation for the GNU C Preprocessor  https://gcc.gnu.org/onlinedocs/cppinternals/
 
-# !!! warning !!!
+# !!! WARNING !!!
 
 it is `NOT` recommended to use this to pre-process C, C++, or OBJ-C code
 
