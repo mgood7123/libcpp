@@ -1,5 +1,13 @@
 # libcpp
 
+# !!! warning !!!
+
+it is `NOT` recommended to use this to pre-process C, C++, or OBJ-C code
+
+such code can depend on internal macro's defined by the compiler
+
+such as `__cplusplus` and `__GNUC__` and others the compiler may pre-define
+
 ## compiling
 
 ### linux
@@ -26,12 +34,3 @@ make -f makefile.windows clean ; make -f makefile.windows
 
 
 consult GCC documentation for the GNU C Preprocessor  https://gcc.gnu.org/onlinedocs/cppinternals/
-
-
-## warning
-
-it is `NOT` recommended to use this to pre-process C, C++, or OBJ-C code
-
-such code can depend on internal macro's defined by the compiler
-
-such as `__cplusplus` and `__GNUC__` and others the compiler may pre-define
