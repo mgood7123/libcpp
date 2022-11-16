@@ -1,5 +1,7 @@
 # libcpp
 
+consult GCC documentation for the GNU C Preprocessor  https://gcc.gnu.org/onlinedocs/cppinternals/
+
 # !!! warning !!!
 
 it is `NOT` recommended to use this to pre-process C, C++, or OBJ-C code
@@ -32,5 +34,3 @@ make -f makefile.windows clean ; make -f makefile.windows
 
 `libcpp.a` is generated in `GCC_OBJECTS_DIRECTORY/libcpp/libcpp.a`
 
-
-consult GCC documentation for the GNU C Preprocessor  https://gcc.gnu.org/onlinedocs/cppinternals/
